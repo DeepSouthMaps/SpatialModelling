@@ -1,0 +1,1 @@
+Source for the precip projetions: https://environment.govt.nz/publications/climate-change-projections-for-new-zealand/
