@@ -1,0 +1,16 @@
+// XML Tree
+digraph {
+	edge [penwidth=3]
+	node [penwidth=3]
+	StreamFlow [label="" fillcolor=blue image="additional_figs/StreamFlow_high.png" shape=box style=filled]
+	AbsoluteFlux [label="" fillcolor=blue image="additional_figs/AbsoluteFlux_high.png" shape=box style=filled]
+	StreamFlow -> AbsoluteFlux
+	subgraph cluster_name {
+		graph [margin=100 pad=1]
+		StreamFlow [label="" image="additional_figs/StreamFlow_high.png" shape=box]
+		AbsoluteFlux [label="" image="additional_figs/AbsoluteFlux_high.png" shape=box]
+		cluster_name [label="Cluster Label" height=0.5 shape=plaintext width=1.5]
+	}
+	node [setlinewidth=200 style=filled]
+	node [penwidth=10000]
+}

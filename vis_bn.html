@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Tree Diagram</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+
+<div id="tree-container"></div>
+
+<script>
+    // Load XML file
+    d3.xml("flux.xml").then(function (data) {
+        // Convert XML to JSON
+        var json = xmlToJson(data);
+
+        // Create tree diagram
+        createTreeDiagram(json);
+    });
+
+    // Function to convert XML to JSON
+    function xmlToJson(xml) {
+        var obj = {};
+
+        if (xml.nodeType == 1) {
+            if (xml.attributes.length > 0) {
+                obj["@attributes"] = {};
+                for (var j = 0; j < xml.attributes.length; j++) {
+                    var attribute = xml.attributes.item(j);
+                    obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+                }
+            }
+        } else if (xml.nodeType == 3) {
+            obj = xml.nodeValue.trim();
+        }
+
+        if (xml.hasChildNodes()) {
+            for (var i = 0; i < xml.childNodes.length; i++) {
+                var item = xml.childNodes.item(i);
+                var nodeName = item.nodeName;
+
+                if (typeof obj[nodeName] == "undefined") {
+                    obj[nodeName] = xmlToJson(item);
+                } else {
+                    if (typeof obj[nodeName].push == "undefined") {
+                        var old = obj[nodeName];
+                        obj[nodeName] = [];
+                        obj[nodeName].push(old);
+                    }
+                    obj[nodeName].push(xmlToJson(item));
+                }
+            }
+        }
+        return obj;
+    }
+
+    // Function to create tree diagram
+    function createTreeDiagram(data) {
+        var margin = { top: 20, right: 90, bottom: 30, left: 90 },
+            width = 960 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+        var svg = d3.select("#tree-container")
+            .append("svg")
+            .attr("width", width + margin.right + margin.left)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        var tree = d3.tree().size([height, width]);
+
+        var root = d3.hierarchy(data);
+        tree(root);
+
+        var link = svg.selectAll(".link")
+            .data(root.descendants().slice(1))
+            .enter().append("path")
+            .attr("class", "link")
+            .attr("d", function (d) {
+                return "M" + d.y + "," + d.x
+                    + "C" + (d.y + d.parent.y) / 2 + "," + d.x
+                    + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
+                    + " " + d.parent.y + "," + d.parent.x;
+            });
+
+        var node = svg.selectAll(".node")
+            .data(root.descendants())
+            .enter().append("g")
+            .attr("class", "node")
+            .attr("transform", function (d) { return "translate(" + d.y + "," + d.x + ")"; });
+
+        node.append("circle")
+            .attr("r", 5);
+
+        node.append("text")
+            .attr("dy", ".35em")
+            .attr("x", function (d) { return d.children ? -13 : 13; })
+            .style("text-anchor", function (d) { return d.children ? "end" : "start"; })
+            .text(function (d) { return d.data["@attributes"] ? d.data["@attributes"].id : d.data; });
+    }
+</script>
+
+</body>
+</html>

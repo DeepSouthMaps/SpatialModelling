@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smile version="1.0" id="Unnamed" numsamples="10000" discsamples="10000">
+	<nodes>
+		<cpt id="StreamFlow">
+			<state id="low" />
+			<state id="medium" />
+			<state id="high" />
+			<probabilities>0.324783310054747 0.3428059896288256 0.3324107003164273</probabilities>
+		</cpt>
+		<cpt id="AbsoluteFlux">
+			<state id="low" />
+			<state id="medium" />
+			<state id="high" />
+			<parents>StreamFlow</parents>
+			<probabilities>0.4890512315591091 0.3512263109138916 0.1597224575269992 0.2344415181149616 0.430265217709934 0.3352932641751042 0.08563203089329649 0.3409961097011285 0.5733718594055749</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 4.0.3005.2 1d997c67c5e1680" name="Unnamed">
+			<node id="AbsoluteFlux">
+				<name>AbsoluteFlux</name>
+				<interior color="e5f6f7" />
+				<outline color="0000bb" />
+				<font color="000000" name="Arial" size="8" />
+				<position>312 512 388 548</position>
+				<barchart active="true" width="128" height="72" />
+			</node>
+			<node id="StreamFlow">
+				<name>StreamFlow</name>
+				<interior color="e5f6f7" />
+				<outline color="0000bb" />
+				<font color="000000" name="Arial" size="8" />
+				<position>311 378 387 414</position>
+				<barchart active="true" width="128" height="72" />
+			</node>
+		</genie>
+	</extensions>
+</smile>
