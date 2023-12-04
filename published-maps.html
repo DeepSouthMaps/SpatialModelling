@@ -44,9 +44,13 @@ function includeHTML() {
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
                 <h3>Using the Map</h3>
-        Click and drag to move around the map. Scroll to zoom, or use the toggle in the top left corner. Toggle between satellite image or a map as the base layer using the "openstreetmap" and "Satellite" option in the menu in the top right hand corner. Other option in the right hand corner are used to toggle datasets. Hover over the data to see further details. Use the "Back to systems diagram" button to return to the main interface.
+        You can navigate around the maps by clicking and draging. Scroll to zoom in and out, or use the toggle in the top left corner. <br>
+        You can toggle between satellite image or open street maps as the base layer using the options in the menu in the top right hand corner. Datasets can be toggled on and off using the same menu. <br>
+        When a dataset is turned on, you can hover over the data to see further details. <br>
+        Use the "Back to systems diagram" button on any map to return to the main interface.
+        
                 <h3>Bayesian Network Models</h3>
-        Bayesian network models are a type of probabilistic model which are comprised of a series of nodes and arcs. The nodes (boxes) are variables, while the arcs (arrows) indicate a probabilistic dependance between the variables. In discrete Bayesian networks (as shown here), each of the nodes has different states. When evidence is set (in this case, we select the emissions pathways), the network calculates subsequent probabilities of each of the states occurring in all the other nodes.
+        Bayesian network models are a type of probabilistic model which are comprised of a series of nodes and arcs. The nodes (boxes) are variables, while the arcs (arrows) indicate a probabilistic dependance between the variables. In discrete Bayesian networks (as used in this project), each of the nodes has different states, which represent different conditions under which the node can be. When information is known about the states of variables in the network, evidence can be set, and the statistics behind the network are used to calculate subsequent probabilities of each of the states occurring in all other nodes in the network. By providing probabilities rather than a single outcome, Bayesian networks provide an indicate of uncertainty in the system.
         
     </div>
       
@@ -65,16 +69,22 @@ function includeHTML() {
         
     <div id="menu3" class="tab-pane fade">
         <h3>Connecting Ground Water to Climate Scenarios</h3>
-        Here, we demonstrate the connection between climate scenarios and the groundwater system, and we discuss the potential follow on impact on the risk to the public of Campylobacter infection, as one indicator of wellbeing.
+        In this tab, we demonstrate the connection between climate scenarios and the groundwater system, and we discuss how this may change the risk of infection from pathogens present in waterways.
       <h3>Groundater Model Output</h3>
-        We undertake groundwater modelling, forcing the model (XXX) with historical data. Three scenarios were simulated: base conditions (03/01/1972 to 31/12/2021), wet conditions (01/07/2018 to 30/06/2019) and dry conditions (01/07/2020 to 30/06/2021). Lines on the map indicate the stream flow rates, and the background shading indicates the groundwater head at the surface. The results show increasing flow rates through the waterways of the Heretaunga plains, with a particularly significant increase in flow under wet conditions in the Upper Ngaruroro River.
+        We undertake groundwater modelling, forcing the MODFLOW model with boundary conditions from historical data. This includes the stream flow rate into the modelling area, and the groundwater recharge, which were determined from historical periods. Three scenarios were simulated: base conditions, defined as the average from 03/01/1972 to 31/12/2021, wet conditions from 01/07/2018 to 30/06/2019, and dry conditions from 01/07/2020 to 30/06/2021. <br>
+        These results are preliminary, and should be viewed as proofs of concepts. <br>
+        Lines on the map indicate the stream locations, and the stream colour represents flow rates. The background shading indicates the groundwater head at the surface. The results show increasing flow rates through the waterways of the Heretaunga plains as conditions get wetter, with a particularly significant increase in flow under wet conditions in the Upper Ngaruroro River. Exchange between ground water and surface water also increases under wetter conditions (not shown).
         
 <iframe src="groundwater.html" width="90%" height="600px" frameborder="0"></iframe>
         
       <h3>Modelling Ngaruroro River-Groundwater Exchange</h3>
-        The model below draws on the data produced from the ground water modelling, and combines it with historical precipitation records (MFE 2018) and precipitation projections under different emissions pathways (NIWA 2023). The target variable for this modelling work is the absolute flux between groundwater and the surface water, since these fluxes presents a pathway for pathogens to enter the groundwater system, and an increase in flux presents an increase in risk of infections, such as Campylobacter. <br>
-        Under climate change, it is expected that there will be an increase in extremes: more years with higher than average rainfall, and more years with lower than average rainfall, compared to present. Toggling between the different climate scenarios
-        Toggling between the climate scenarios shows how increasing probabilities of extreme conditions (both wet and dry) increase the probability of higher exchanges with groundwater and surface water.
+        Here we develope a basic BN structure to connect the ground water modelling to climate scenarios, and we hypothesis about what this could mean for the risk of infection from pathogens. <br>
+        The Bayesian network model below draws on the data produced from the ground water modelling and combines it with historical precipitation records (MFE 2018) and precipitation projections under different emissions pathways (NIWA 2023). <br>
+        We select the flux (exchange between ground water and surface water) as the target variable for this modelling work. These fluxes presents pathways for pathogens to be transported, likely increasing the risk of infection from waterborne pathogens, such as Campylobacter. <br>
+        Connected to flux is the stream flow rate. Both of these nodes are divided into states of low, medium and high. Connected to the stream flow rate is the recharge node, which describes groundwater being replenished from precipitation. Both of these nodes are influenced by the general climate, which has states of the different RCP scenarios and present day conditions (defined as the base scenario). <br>
+        
+        Under climate change, there will be an increase in extremes: more years with higher than average rainfall, and more years with lower than average rainfall, compared to present. 
+        Toggling between the climate scenarios shows how increasing probabilities of extreme conditions (both wet and dry) increase the probability of higher exchanges with groundwater and surface water. Among other issues, this increasing the change of pathogens moving through our waterways and is associated with an increase risk of infection from waterborne pathogens.
         
 <iframe src="groundwater_BN.html" width="90%" height="600px" frameborder="0"></iframe>
         
