@@ -1,0 +1,21 @@
+// XML Tree
+digraph {
+	edge [penwidth=3]
+	node [penwidth=3]
+	ClimateScenario [label="" fillcolor=white shape=box style=filled]
+	Recharge [label="" fillcolor=white shape=box style=filled]
+	ClimateScenario -> Recharge
+	StreamFlow [label="" fillcolor=white shape=box style=filled]
+	Recharge -> StreamFlow
+	AbsoluteFlux [label="" fillcolor=white shape=box style=filled]
+	StreamFlow -> AbsoluteFlux
+	subgraph cluster_name {
+		graph [margin=100 pad=1]
+		ClimateScenario [label=ClimateScenario shape=box]
+		Recharge [label=Recharge shape=box]
+		StreamFlow [label=StreamFlow shape=box]
+		AbsoluteFlux [label=AbsoluteFlux shape=box]
+	}
+	node [setlinewidth=200 style=filled]
+	node [penwidth=10000]
+}

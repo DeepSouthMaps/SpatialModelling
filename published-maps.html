@@ -37,44 +37,55 @@ function includeHTML() {
 
 <ul class="nav nav-tabs">
    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-<!--     <li><a data-toggle="tab" href="#menu1">Home</a></li>     -->
     <li><a data-toggle="tab" href="#menu2">Campylobacter Risk</a></li>
     <li><a data-toggle="tab" href="#menu3">Ground Water Model</a></li>
   </ul>
 
   <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-        Analysis shows a linear relationship between increasing risk from Campylobacter infection with increasing rainfall.
-        Under climate change, we expect more extremes in rainfall and 
+                <h3>Using the Map</h3>
+        Click and drag to move around the map. Scroll to zoom, or use the toggle in the top left corner. Toggle between satellite image or a map as the base layer using the "openstreetmap" and "Satellite" option in the menu in the top right hand corner. Other option in the right hand corner are used to toggle datasets. Hover over the data to see further details. Use the "Back to systems diagram" button to return to the main interface.
+                <h3>Bayesian Network Models</h3>
+        Bayesian network models are a type of probabilistic model which are comprised of a series of nodes and arcs. The nodes (boxes) are variables, while the arcs (arrows) indicate a probabilistic dependance between the variables. In discrete Bayesian networks (as shown here), each of the nodes has different states. When evidence is set (in this case, we select the emissions pathways), the network calculates subsequent probabilities of each of the states occurring in all the other nodes.
         
     </div>
-    <div id="menu2" class="tab-pane fade">
-<iframe src="Campylobacter_risk.html" width="100%" height="600px" frameborder="0"></iframe>
-        Use the "Back to systems diagram" button to return to the main interface.<br>
-        Analysis is presented for four regions under Q4 rain, and two regions under Q5.
-        Use the toggle in the top right hand side of the plot to switch between data sets.
-        Available datasets:
-        *Q4 Rainfall: The average rainfall for that catchment area quintile 4
-        *Q5 Rainfall: The average rainfall for that catchment area quintile 5
+      
+<!--     <div id="menu2" class="tab-pane fade"> -->
+            <div id="menu2" class="tab-pane fade">
+                <h3>Campylobacter Risk under Extreme Rainfall</h3>
+                Here we present the finding from the analysis of the comparison of Campylobacter Risk under different extreme rainfall scnearios. Historical rainfall is used to determine quintiles (groupings of preciptiation into 5 categories) on a local government area basis, and linear modelling is used to connect the historical incidence of Campylobacter infection with the rainfall.
+                
+<iframe src="Campylobacter_risk.html" width="90%" height="600px" frameborder="0"></iframe><br>
+<h3>Legend Details</h3>
+        <ul>Q4 Rainfall: The average rainfall for that catchment area quintile 4</ul>
+        <ul>Q5 Rainfall: The average rainfall for that catchment area quintile 5</ul>
+        <ul>Risk from Q4 Rain: Percentage increase in risk in Campylobacter infection with respect to mean conditions under conditions of Q4 rainfall</ul>
+        <ul>Risk from Q5 Rain: Percentage increase in risk in Campylobacter infection with respect to mean conditions under conditions of Q5 rainfall</ul>
     </div>
+        
     <div id="menu3" class="tab-pane fade">
-      <h3>Menu 3</h3>
-        Groundwater modelling output was undertaken using the XX model, using forcing from different time periods. Three scenarios were simulated: base (03/01/1972 to 31/12/2021), wet (01/07/2018 to 30/06/2019) and dry (01/07/2020 to 30/06/2021). Historical rainfall data obtained from the New Zealand Ministry for the Environment <br>
-<iframe src="groundwater.html" width="100%" height="600px" frameborder="0"></iframe>
-      <h3>Tokyo</h3>
-        We demonstrate how probabilistic modelling can be used to connect climate change scenarios to outcomes.
-        This BN is for the Ngaruroro River.
-        Here, we are interested in the flux between grounwater and the river, since this presents a pathway for pathogens to exchange with the water supply.
+        <h3>Connecting Ground Water to Climate Scenarios</h3>
+        Here, we demonstrate the connection between climate scenarios and the groundwater system, and we discuss the potential follow on impact on the risk to the public of Campylobacter infection, as one indicator of wellbeing.
+      <h3>Groundater Model Output</h3>
+        We undertake groundwater modelling, forcing the model (XXX) with historical data. Three scenarios were simulated: base conditions (03/01/1972 to 31/12/2021), wet conditions (01/07/2018 to 30/06/2019) and dry conditions (01/07/2020 to 30/06/2021). Lines on the map indicate the stream flow rates, and the background shading indicates the groundwater head at the surface. The results show increasing flow rates through the waterways of the Heretaunga plains, with a particularly significant increase in flow under wet conditions in the Upper Ngaruroro River.
         
-        Toggling between the climate scenarios shows how increasing probabilities of extremes presents an opportunity to 
+<iframe src="groundwater.html" width="90%" height="600px" frameborder="0"></iframe>
         
-<iframe src="groundwater_BN.html" width="100%" height="600px" frameborder="0"></iframe>
-        <h3>References<h3>
-                    Ministry for the Environment 2018. Climate Change Projections for New Zealand: Atmosphere Projections Based on Simulations from the IPCC Fifth Assessment, 2nd Edition. Wellington:
+      <h3>Modelling Ngaruroro River-Groundwater Exchange</h3>
+        The model below draws on the data produced from the ground water modelling, and combines it with historical precipitation records (MFE 2018) and precipitation projections under different emissions pathways (NIWA 2023). The target variable for this modelling work is the absolute flux between groundwater and the surface water, since these fluxes presents a pathway for pathogens to enter the groundwater system, and an increase in flux presents an increase in risk of infections, such as Campylobacter. <br>
+        Under climate change, it is expected that there will be an increase in extremes: more years with higher than average rainfall, and more years with lower than average rainfall, compared to present. Toggling between the different climate scenarios
+        Toggling between the climate scenarios shows how increasing probabilities of extreme conditions (both wet and dry) increase the probability of higher exchanges with groundwater and surface water.
+        
+<iframe src="groundwater_BN.html" width="90%" height="600px" frameborder="0"></iframe>
+        
+        <h3>References</h3>
+                    Ministry for the Environment (MFE) 2018. Climate Change Projections for New Zealand: Atmosphere Projections Based on Simulations from the IPCC Fifth Assessment, 2nd Edition. Wellington:
 Ministry for the Environment. <br>
-       National Institute of Water and Atmospheric Research Ltd 2023 . Ministry for the Environment, Atmosphere and Climate Indicators 2023. Wellington.
+       National Institute of Water and Atmospheric Research Ltd (NIWA) 2023. Ministry for the Environment, Atmosphere and Climate Indicators 2023. Wellington. <br>
+            Code used to create visualisations and the Bayesian network model is stored on GitHub: https://github.com/DeepSouthMaps/SpatialModelling/blob/master/Loading_ncdf.ipynb.
+        
     </div>
-  </div> 
+    </div>
 
 <script>
 includeHTML();
