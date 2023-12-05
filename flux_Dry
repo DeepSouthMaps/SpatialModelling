@@ -1,0 +1,22 @@
+// XML Tree
+digraph {
+	edge [penwidth=3]
+	node [penwidth=3]
+	ClimateScenario [label="" fillcolor=blue image="additional_figs/ClimateScenario_Dry.png" shape=box style=filled]
+	Recharge [label="" fillcolor=blue image="additional_figs/Recharge_Dry.png" shape=box style=filled]
+	ClimateScenario -> Recharge
+	StreamFlow [label="" fillcolor=blue image="additional_figs/StreamFlow_Dry.png" shape=box style=filled]
+	Recharge -> StreamFlow
+	Flux [label="" fillcolor=blue image="additional_figs/Flux_Dry.png" shape=box style=filled]
+	StreamFlow -> Flux
+	Recharge -> Flux
+	subgraph cluster_name {
+		graph [margin=100 pad=1]
+		ClimateScenario [label="" image="additional_figs/ClimateScenario_Dry.png" shape=box]
+		Recharge [label="" image="additional_figs/Recharge_Dry.png" shape=box]
+		StreamFlow [label="" image="additional_figs/StreamFlow_Dry.png" shape=box]
+		Flux [label="" image="additional_figs/Flux_Dry.png" shape=box]
+	}
+	node [setlinewidth=200 style=filled]
+	node [penwidth=10000]
+}

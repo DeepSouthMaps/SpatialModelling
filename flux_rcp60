@@ -2,19 +2,19 @@
 digraph {
 	edge [penwidth=3]
 	node [penwidth=3]
-	ClimateScenario [label="" fillcolor=blue image="additional_figs/ClimateScenario_rcp60.png" shape=box style=filled]
-	Recharge [label="" fillcolor=blue image="additional_figs/Recharge_rcp60.png" shape=box style=filled]
+	ClimateScenario [label="" fillcolor=blue image="additional_figs/ClimateScenario_RCP60.png" shape=box style=filled]
+	Recharge [label="" fillcolor=blue image="additional_figs/Recharge_RCP60.png" shape=box style=filled]
 	ClimateScenario -> Recharge
-	StreamFlow [label="" fillcolor=blue image="additional_figs/StreamFlow_rcp60.png" shape=box style=filled]
+	StreamFlow [label="" fillcolor=blue image="additional_figs/StreamFlow_RCP60.png" shape=box style=filled]
 	Recharge -> StreamFlow
-	AbsoluteFlux [label="" fillcolor=blue image="additional_figs/AbsoluteFlux_rcp60.png" shape=box style=filled]
-	StreamFlow -> AbsoluteFlux
+	Flux [label="" fillcolor=blue image="additional_figs/Flux_RCP60.png" shape=box style=filled]
+	"StreamFlow Recharge" -> Flux
 	subgraph cluster_name {
 		graph [margin=100 pad=1]
-		ClimateScenario [label="" image="additional_figs/ClimateScenario_rcp60.png" shape=box]
-		Recharge [label="" image="additional_figs/Recharge_rcp60.png" shape=box]
-		StreamFlow [label="" image="additional_figs/StreamFlow_rcp60.png" shape=box]
-		AbsoluteFlux [label="" image="additional_figs/AbsoluteFlux_rcp60.png" shape=box]
+		ClimateScenario [label="" image="additional_figs/ClimateScenario_RCP60.png" shape=box]
+		Recharge [label="" image="additional_figs/Recharge_RCP60.png" shape=box]
+		StreamFlow [label="" image="additional_figs/StreamFlow_RCP60.png" shape=box]
+		Flux [label="" image="additional_figs/Flux_RCP60.png" shape=box]
 	}
 	node [setlinewidth=200 style=filled]
 	node [penwidth=10000]
