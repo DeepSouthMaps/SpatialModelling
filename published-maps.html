@@ -36,13 +36,14 @@ function includeHTML() {
 <body>
 
 <ul class="nav nav-tabs">
-   <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-    <li><a data-toggle="tab" href="#menu2">Campylobacter Risk</a></li>
-    <li><a data-toggle="tab" href="#menu3">Ground Water Model</a></li>
+   <li class="active"><a data-toggle="tab" href="#home" onclick="showTab('home')">Home</a></li>
+    <li><a data-toggle="tab" href="#campylobacter" onclick="showTab('campylobacter')">Campylobacter Risk</a></li>
+    <li><a data-toggle="tab" href="#groundwater" onclick="showTab('groundwater')">Ground Water Model</a></li>
   </ul>
 
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
+<!--   <div class="tab-content">
+    <div id="home" class="tab-pane fade in active"> -->
+    <div id="home" class="tab-content">
                 <h3>Using the Map</h3>
         Navigate around the maps by clicking and draging. Scroll to zoom in and out, or use the toggle in the top left corner. <br>
         Toggle between satellite image or open street maps as the base layer using the options in the menu in the top right hand corner. Datasets can be toggled on and off using the same menu. <br>
@@ -55,7 +56,8 @@ function includeHTML() {
     </div>
       
 <!--     <div id="menu2" class="tab-pane fade"> -->
-            <div id="menu2" class="tab-pane fade">
+<!--             <div id="menu2" class="tab-pane fade"> -->
+        <div id="campylobacter" class="tab-content">
                 <h3>Campylobacter Infection Risk under Extreme Rainfall</h3>
                 
                  Here we present an analysis of the connection between campylobacter infection risk and extreme rainfall. This analysis highlights a specific connection between the climate system and public health.<br><br>
@@ -77,7 +79,8 @@ The interactive map can be used to visualise both the rainfall and the percentag
 <iframe src="Campylobacter_risk.html" width="90%" height="600px" frameborder="0"></iframe><br>
 </div>
         
-    <div id="menu3" class="tab-pane fade">
+<!--     <div id="menu3" class="tab-pane fade"> -->
+        <div id="groundwater" class="tab-content">
          <h3>Connecting Ground Water to Climate Scenarios</h3>
         In this tab, we demonstrate the connection between climate scenarios and the groundwater system, and we discuss how this may change the risk of infection from pathogens present in waterways.
         
@@ -109,10 +112,34 @@ Ministry for the Environment. </li>
             Code used to create visualisations and the Bayesian network model is stored on GitHub: https://github.com/DeepSouthMaps/SpatialModelling/blob/master/Loading_ncdf.ipynb.
         
     </div>
-    </div>
+<!--     </div> -->
 
-<script>
+<!-- <script>
 includeHTML();
+</script> -->
+    
+    <script>
+function showTab(tabId) {
+  // Hide all tab content elements
+  var tabContents = document.querySelectorAll('.tab-content');
+  tabContents.forEach(function(content) {
+    content.style.display = 'none';
+  });
+
+  // Show the selected tab content
+  document.getElementById(tabId).style.display = 'block';
+
+  // Change URL hash to reflect the selected tab
+  window.location.hash = tabId;
+}
+
+// Check for hash in URL and show corresponding tab on page load
+window.onload = function() {
+  var hash = window.location.hash.substring(1); // Get hash value without '#'
+  if (hash) {
+    showTab(hash); // Show the tab based on the hash value
+  }
+};
 </script>
 
 </body>
