@@ -3,55 +3,60 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-function includeHTML() {
-  var z, i, elmnt, file, xhttp;
-  /*loop through a collection of all HTML elements:*/
-  z = document.getElementsByTagName("*");
-  for (i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    /*search for elements with a certain atrribute:*/
-    file = elmnt.getAttribute("w3-include-html");
-    if (file) {
-      /*make an HTTP request using the attribute value as the file name:*/
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4) {
-          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-          /*remove the attribute, and call this function once more:*/
-          elmnt.removeAttribute("w3-include-html");
-          includeHTML();
+    
+    
+      <style>
+.custom-tooltip {
+            position: relative;
+            display: inline-block;
         }
-      }      
-      xhttp.open("GET", file, true);
-      xhttp.send();
-      /*exit the function:*/
-      return;
+
+        .custom-tooltip .tooltip-text {
+            display: none;
+/*             width: 120px; */
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: -100%;
+            left: 50%;
+            margin-left: -60px;
+        }
+
+        .custom-tooltip:hover .tooltip-text {
+            display: block;
+        }
+          
+    /* Hide all tab contents by default */
+    .tab-content {
+      display: none;
     }
-  }
-};
-</script>
+      
+          /* CSS to set the size of a specific iframe by its ID */
+    #specificIframe {
+      width: 800px; /* Set the width of the specific iframe */
+      height: 600px; /* Set the height of the specific iframe */
+    }
+      
+
+      
+  </style>
 
 <body>
 
 <ul class="nav nav-tabs">
-   <li><a data-toggle="tab" href="#home" onclick="showTab('home')">Home</a></li> 
+   <li><a data-toggle="tab" href="#home" onclick="showTab('home')">Project Information</a></li> 
     <li><a data-toggle="tab" href="#campylobacter" onclick="showTab('campylobacter')">Campylobacter Risk</a></li>
     <li><a data-toggle="tab" href="#groundwater" onclick="showTab('groundwater')">Ground Water Model</a></li>
   </ul>
 
 
     <div id="home" class="tab-content">
-                <h3>Using the Map</h3>
-        Navigate around the maps by clicking and draging. Scroll to zoom in and out, or use the toggle in the top left corner. <br>
-        Toggle between satellite image or open street maps as the base layer using the options in the menu in the top right hand corner. Datasets can be toggled on and off using the same menu. <br>
-        When a dataset is turned on, hover over the data to see further details. <br>
-        Use the "Back to systems diagram" button on any map to return to the main interface.
-        
-                <h3>Bayesian Network Models</h3>
- Bayesian network models are a type of probabilistic model, which are comprised of a series of nodes and arcs. The nodes (boxes) are variables, while the arcs (arrows) indicate a probabilistic dependance between the variables. In discrete Bayesian networks (as used in this project), each of the nodes has different states, which represent different conditions under which the node can be. When information is known about the states of variables in the network, evidence can be set, and the statistics behind the network are used to calculate subsequent probabilities of each of the states occurring in all other nodes in the network. By providing probabilities rather than a single outcome, Bayesian networks provide an indicate of uncertainty in the sys
-tem.
+          placeholder
+
         
     </div>
       
@@ -65,6 +70,14 @@ tem.
 
                 Using the same data but at daily time steps, aggregated to Regional Council scale, case crossover analysis using conditional Poisson regression suggested linear associations between cumulative 30-day rainfall and campylobacter notifications in some regions (Waikato, Hawkes Bay, Manawatu, Wellington and Canterbury). When the rainfall data were reclassified into national quintiles, the upper quintiles of rainfall were significantly associated with campylobacter notifications in Waikato, Hawkes Bay, Manawatu and Canterbury. <br>
 The interactive map can be used to visualise both the rainfall and the percentage increase in risk from campylobacter infection.
+            
+            <div class="custom-tooltip">
+    <b>Hover here for information on how to use the maps.</b>
+    <span class="tooltip-text">        Navigate around the maps by clicking and draging. Scroll to zoom in and out, or use the toggle in the top left corner. <br>
+        Toggle between satellite image or open street maps as the base layer using the options in the menu in the top right hand corner. Datasets can be toggled on and off using the same menu. <br>
+        When a dataset is turned on, hover over the data to see further details. <br>
+        Use the "Back to systems diagram" button on any map to return to the main interface.</span>
+</div>
                 
  <h3>Legend Details</h3>
                 <ul>
@@ -89,8 +102,15 @@ The interactive map can be used to visualise both the rainfall and the percentag
         Lines on the map indicate stream locations, and the stream colour represents flow rate (mean of all realisations). The background shading indicates the mean groundwater head at the surface. The results show significantly higher flow rates during wetter conditions, with a particularly significant increase in flow under wet conditions in the Upper Ngaruroro River. Exchange between groundwater and surface water also increases under wetter conditions.<br><br>
             
         These results are preliminary, and should be viewed as proofs of concepts.
-            
-        
+
+<div class="custom-tooltip">
+    <b>Hover here for information on how to use the maps.</b>
+    <span class="tooltip-text">        Navigate around the maps by clicking and draging. Scroll to zoom in and out, or use the toggle in the top left corner. <br>
+        Toggle between satellite image or open street maps as the base layer using the options in the menu in the top right hand corner. Datasets can be toggled on and off using the same menu. <br>
+        When a dataset is turned on, hover over the data to see further details. <br>
+        Use the "Back to systems diagram" button on any map to return to the main interface.</span>
+</div>
+
 <iframe src="groundwater.html" width="90%" height="600px" frameborder="0"></iframe>
         
        <h3>Modelling Ngaruroro River-Groundwater Exchange</h3>
@@ -104,6 +124,11 @@ The interactive map can be used to visualise both the rainfall and the percentag
         Under climate change, there will be an increase in extremes: more years with higher than average rainfall, and more years with lower than average rainfall, compared to present. 
         Use the panel in the right hand corner to toggle between wet, dry and base scenarios. The model results show that under wet and dry scenarios, both the stream flow rate and the flux between surface and groundwater are more extreme, while the base scenario is associated with more moderate outcomes. Both the wet and dry scenarios are more likely to occur under higher emissions scenarios compared to present, while base conditions are more likely under present day conditions.
         Among other issues highlighted on the systems diagram in the main interface, these extreme wet and dry conditions provide increased pathways for pathogens to move through our waterways and increase the risk of infection.
+            
+                        <div class="custom-tooltip">
+    <b>Hover here for further information on Bayesian networks.</b>
+    <span class="tooltip-text"> Bayesian network models are a type of probabilistic model, which are comprised of a series of nodes and arcs. The nodes (boxes) are variables, while the arcs (arrows) indicate a probabilistic dependance between the variables. In discrete Bayesian networks (as used in this project), each of the nodes has different states, which represent different conditions under which the node can be. When information is known about the states of variables in the network, evidence can be set, and the statistics behind the network are used to calculate subsequent probabilities of each of the states occurring in all other nodes in the network. By providing probabilities rather than a single outcome, Bayesian networks provide an indicate of uncertainty in the system.</span>
+</div>
         
 <iframe src="image_toggle.html" width="100%" height="800px" frameborder="0"></iframe>
         
@@ -117,24 +142,6 @@ Ministry for the Environment. </li>
         
     </div>
 
-  <style>
-    /* Hide all tab contents by default */
-    .tab-content {
-      display: none;
-    }
-      
-          /* CSS to set the size of a specific iframe by its ID */
-    #specificIframe {
-      width: 800px; /* Set the width of the specific iframe */
-      height: 600px; /* Set the height of the specific iframe */
-    }
-
-/*     /* Display only the content of the default tab */
-/*     #home { */
-/*       display: block; */
-/*     }  */
-      
-  </style>
 
     
     
