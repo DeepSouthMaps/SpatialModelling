@@ -1,21 +1,22 @@
 // XML Tree
 digraph {
-	edge [penwidth=3]
-	node [penwidth=3]
-	ClimateScenario [label="" fillcolor=blue image="additional_figs/ClimateScenario_Base.png" shape=box style=filled]
-	Recharge [label="" fillcolor=blue image="additional_figs/Recharge_Base.png" shape=box style=filled]
+	edge [penwidth=10]
+	node [penwidth=2]
+	iterations=10000 layout=neato
+	ClimateScenario [label="" fillcolor=blue height=0.5 image="additional_figs/ClimateScenario_Base.png" imagepos=c shape=box style=filled width=1.5]
+	Recharge [label="" fillcolor=blue height=0.5 image="additional_figs/Recharge_Base.png" imagepos=c shape=box style=filled width=1.5]
 	ClimateScenario -> Recharge
-	StreamFlow [label="" fillcolor=blue image="additional_figs/StreamFlow_Base.png" shape=box style=filled]
+	StreamFlow [label="" fillcolor=blue height=0.5 image="additional_figs/StreamFlow_Base.png" imagepos=c shape=box style=filled width=1.5]
 	Recharge -> StreamFlow
-	Flux [label="" fillcolor=blue image="additional_figs/Flux_Base.png" shape=box style=filled]
+	Flux [label="" fillcolor=blue height=0.5 image="additional_figs/Flux_Base.png" imagepos=c shape=box style=filled width=1.5]
 	StreamFlow -> Flux
 	Recharge -> Flux
 	subgraph cluster_name {
-		graph [margin=100 pad=1]
-		ClimateScenario [label="" image="additional_figs/ClimateScenario_Base.png" shape=box]
-		Recharge [label="" image="additional_figs/Recharge_Base.png" shape=box]
-		StreamFlow [label="" image="additional_figs/StreamFlow_Base.png" shape=box]
-		Flux [label="" image="additional_figs/Flux_Base.png" shape=box]
+		graph [margin=1 pad=1]
+		ClimateScenario [label="" height=0.5 image="additional_figs/ClimateScenario_Base.png" imagepos=c pos="10,15!" shape=box width=1.5]
+		Recharge [label="" height=0.5 image="additional_figs/Recharge_Base.png" imagepos=c pos="10,10!" shape=box width=1.5]
+		StreamFlow [label="" height=0.5 image="additional_figs/StreamFlow_Base.png" imagepos=c pos="2.5,5!" shape=box width=1.5]
+		Flux [label="" height=0.5 image="additional_figs/Flux_Base.png" imagepos=c pos="17.5,5!" shape=box width=1.5]
 	}
 	node [setlinewidth=200 style=filled]
 	node [penwidth=10000]

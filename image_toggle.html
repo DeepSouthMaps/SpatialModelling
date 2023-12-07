@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Slider</title>
+  <style>
+    .slider-container {
+      max-width: 500px;
+      position: relative;
+      margin: auto;
+    }
+    
+    .slider-image {
+      display: none;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Increase dropdown menu size */
+    #imageSelector {
+      width: 100%;
+      padding: 8px; /* Adjust padding for better appearance */
+      font-size: 16px; /* Adjust font size if needed */
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="slider-container">
+  <!-- Dropdown menu for image selection -->
+  <label for="imageSelector">Select a scenario:</label>
+  <select id="imageSelector" onchange="selectSlide()">
+    <option value="0">Base</option>
+    <option value="1">Dry</option>
+    <option value="2">Wet</option>
+  </select>
+  
+  <!-- Images -->
+  <img class="slider-image" src="flux_base.png" alt="Base">
+  <img class="slider-image" src="flux_Dry.png" alt="Dry">
+  <img class="slider-image" src="flux_Wet.png" alt="Wet">
+</div>
+
+<script>
+let slideIndex = 0;
+const slides = document.querySelectorAll('.slider-image');
+const imageSelector = document.getElementById('imageSelector');
+
+function showSlide(n) {
+  slides.forEach(slide => slide.style.display = 'none');
+  slideIndex = (n + slides.length) % slides.length;
+  slides[slideIndex].style.display = 'block';
+  imageSelector.value = slideIndex.toString(); // Update dropdown selection
+}
+
+function selectSlide() {
+  showSlide(parseInt(imageSelector.value));
+}
+
+// Show the first slide when the page loads
+showSlide(slideIndex);
+</script>
+
+</body>
+</html>
