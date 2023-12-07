@@ -3,20 +3,20 @@ digraph {
 	edge [penwidth=10]
 	node [penwidth=2]
 	iterations=10000 layout=neato
-	ClimateScenario [label="" fillcolor=blue height=0.5 image="additional_figs/ClimateScenario_Wet.png" imagepos=c shape=box style=filled width=1.5]
-	Recharge [label="" fillcolor=blue height=0.5 image="additional_figs/Recharge_Wet.png" imagepos=c shape=box style=filled width=1.5]
+	ClimateScenario [label="" fillcolor=invis height=0.3 image="additional_figs/ClimateScenario_Wet.png" imagepos=c shape=box style=filled width=1.5]
+	Recharge [label="" fillcolor=invis height=0.3 image="additional_figs/Recharge_Wet.png" imagepos=c shape=box style=filled width=1.5]
 	ClimateScenario -> Recharge
-	StreamFlow [label="" fillcolor=blue height=0.5 image="additional_figs/StreamFlow_Wet.png" imagepos=c shape=box style=filled width=1.5]
+	StreamFlow [label="" fillcolor=invis height=0.3 image="additional_figs/StreamFlow_Wet.png" imagepos=c shape=box style=filled width=1.5]
 	Recharge -> StreamFlow
-	Flux [label="" fillcolor=blue height=0.5 image="additional_figs/Flux_Wet.png" imagepos=c shape=box style=filled width=1.5]
+	Flux [label="" fillcolor=invis height=0.3 image="additional_figs/Flux_Wet.png" imagepos=c shape=box style=filled width=1.5]
 	StreamFlow -> Flux
 	Recharge -> Flux
 	subgraph cluster_name {
 		graph [margin=1 pad=1]
-		ClimateScenario [label="" height=0.5 image="additional_figs/ClimateScenario_Wet.png" imagepos=c pos="10,15!" shape=box width=1.5]
-		Recharge [label="" height=0.5 image="additional_figs/Recharge_Wet.png" imagepos=c pos="10,10!" shape=box width=1.5]
-		StreamFlow [label="" height=0.5 image="additional_figs/StreamFlow_Wet.png" imagepos=c pos="2.5,5!" shape=box width=1.5]
-		Flux [label="" height=0.5 image="additional_figs/Flux_Wet.png" imagepos=c pos="17.5,5!" shape=box width=1.5]
+		ClimateScenario [label="" height=0.3 image="additional_figs/ClimateScenario_Wet.png" imagepos=c pos="10,15!" shape=box width=1.5]
+		Recharge [label="" height=0.3 image="additional_figs/Recharge_Wet.png" imagepos=c pos="10,10!" shape=box width=1.5]
+		StreamFlow [label="" height=0.3 image="additional_figs/StreamFlow_Wet.png" imagepos=c pos="2.5,5!" shape=box width=1.5]
+		Flux [label="" height=0.3 image="additional_figs/Flux_Wet.png" imagepos=c pos="17.5,5!" shape=box width=1.5]
 	}
 	node [setlinewidth=200 style=filled]
 	node [penwidth=10000]
