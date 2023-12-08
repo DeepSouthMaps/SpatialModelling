@@ -42,7 +42,15 @@
     }
       
 
-      
+              ul {
+            list-style: none; /* Remove default list styles (bullets/numbers) */
+            padding: 0; /* Remove default padding */
+        }
+        ul li {
+            margin-bottom: 10px; /* Add margin-bottom between list items */
+            /* You can adjust the margin value as needed */
+        }
+          
   </style>
 
 <body>
@@ -51,6 +59,7 @@
    <li><a data-toggle="tab" href="#home" onclick="showTab('home')">Project Information</a></li> 
     <li><a data-toggle="tab" href="#campylobacter" onclick="showTab('campylobacter')">Campylobacter Risk</a></li>
     <li><a data-toggle="tab" href="#groundwater" onclick="showTab('groundwater')">Ground Water Model</a></li>
+    <li><a data-toggle="tab" href="#glossary" onclick="showTab('glossary')">Glossary</a></li>
   </ul>
 
 
@@ -98,10 +107,11 @@ The interactive map can be used to visualise both the rainfall and the percentag
         In this tab, we demonstrate the connection between climate scenarios and the groundwater system, and we discuss how this may change the risk of infection from pathogens present in waterways.
         
       <h3>Groundater Model Output</h3>
-        We used the model MODFLOW to simulate the hydrological cycle of the Heretaunga plains/Napier region, using boundary conditions defined from historical data. These boundary conditions included stream flow rate into the modelling area and groundwater recharge. Model forcing was defined for three scenarios: base conditions, defined as the average from 03/01/1972 to 31/12/2021, wet conditions from 01/07/2018 to 30/06/2019, and dry conditions from 01/07/2020 to 30/06/2021. For each scenario, there are 178 bootstrap scenarios with varying parameterisations. These bootstrap scenarios provide a distribution of model outputs. <br><br>
-        Lines on the map indicate stream locations, and the stream colour represents flow rate (mean of all realisations). The background shading indicates the mean groundwater head at the surface. The results show significantly higher flow rates during wetter conditions, with a particularly significant increase in flow under wet conditions in the Upper Ngaruroro River. Exchange between groundwater and surface water also increases under wetter conditions.<br><br>
-            
-        These results are preliminary, and should be viewed as proofs of concepts.
+        We used the model MODFLOW to simulate the hydrological cycle around the Heretaunga plains/Napier region, using boundary conditions defined from, and conditioned by, historical data. These boundary conditions included stream flow rate into the modelling area and groundwater recharge. This model forcing was defined for three scenarios: base conditions, defined as the average from 03/01/1972 to 31/12/2021, wet conditions, using a wet climate period from the historical record (from 01/07/2018 to 30/06/2019), and dry conditions, using a dry climate period from historical record (from 01/07/2020 to 30/06/2021). The numerical model is conditioned to historical system observations of water levels and stream flows. For each scenario, there is an ensemble of simulated outputs with varying parameterisations. The ensembles provide a distribution of model outputs that represent the model uncertainty. <br><br>
+
+Lines on the map indicate the stream locations, and the stream colour represents flow rates (mean of all realisations). The background shading indicates the mean groundwater head (water table elevation). The results show significantly higher flow rates during wetter conditions, with a particularly significant increase in flow under wet conditions in the Upper Ngaruroro River. Exchange from surface water to groundwater (river loss) is minimally affected but the wetter scenario, across the domain the net exchange from groundwater to surface water (stream gain) increases under wetter conditions. <br><br>
+
+These results are preliminary, and should be viewed as proofs of concepts.
 
 <div class="custom-tooltip">
     <b>Hover here for information on how to use the maps.</b>
@@ -114,16 +124,14 @@ The interactive map can be used to visualise both the rainfall and the percentag
 <iframe src="groundwater.html" width="90%" height="600px" frameborder="0"></iframe>
         
        <h3>Modelling Ngaruroro River-Groundwater Exchange</h3>
-        Here we develope a basic BN structure to connect the groundwater modelling to climate scenarios, and hypothesis about what this could mean for the risk of infection from pathogens. <br><br>
-        The Bayesian network model below draws on the groundwater modelling output and combines it with historical precipitation records (MFE 2018) and precipitation projections under different emissions pathways (NIWA 2023). The realisations from the groundwater modelling output are used to generate the input probability distributions for the Bayesian network.<br><br>
-        We select the flux (exchange between groundwater and surface water) and the stream flow rates as the target variable for this modelling work. These fluxes present pathways for pathogens to be transported, likely increasing the risk of infection from waterborne pathogens, such as Campylobacter. <br>
-        Connected to flux is the stream flow rate. Stream flow rate is divided into states of low, medium and high, while flux also includes a very high category, due to a long tail on the distribution of flux values. Connected to the stream flow rate is the recharge node, which describes groundwater being replenished from precipitation. Both of these nodes are influenced by the
- general climate, which is represented by states of the different RCP scenarios and present day conditions (defined as the base
- scenario). <br><br>
-        
-        Under climate change, there will be an increase in extremes: more years with higher than average rainfall, and more years with lower than average rainfall, compared to present. 
-        Use the panel in the right hand corner to toggle between wet, dry and base scenarios. The model results show that under wet and dry scenarios, both the stream flow rate and the flux between surface and groundwater are more extreme, while the base scenario is associated with more moderate outcomes. Both the wet and dry scenarios are more likely to occur under higher emissions scenarios compared to present, while base conditions are more likely under present day conditions.
-        Among other issues highlighted on the systems diagram in the main interface, these extreme wet and dry conditions provide increased pathways for pathogens to move through our waterways and increase the risk of infection.
+        Here we develop a basic BN structure to connect the ground water modelling to climate scenarios, and we hypothesis about what this could mean for the risk of infection from pathogens. <br><br>
+
+The Bayesian network model below draws on the ground water modelling output and combines it with historical precipitation records (MFE 2018) and precipitation projections under different emissions pathways (NIWA 2023). The realisations from the ground water modelling output are used to generate the input probability distributions for Bayesian network.<br><br>
+
+We select the flux (exchange between ground water and surface water) and the stream flow rates as the target variable for this modelling work. These fluxes from surface water to groundwater presents pathways for pathogens to be transported, likely increasing the risk of infection from waterborne pathogens, such as Campylobacter. <br><br>
+Connected to flux is the stream flow rate [something about extreme flows?]. Stream flow rate is divided into states of low, medium and high, while flux also includes a very high category, due to a long tail on the distribution of flux values. Connected to the stream flow rate is the recharge node, which describes groundwater being replenished from precipitation. Both of these nodes are influenced by the general climate, which has states of the different RCP scenarios and present day conditions (defined as the base scenario). <br><br>
+
+Under climate change, there will be an increase in extremes: more years with higher than average rainfall, and more years with lower than average rainfall, compared to present. Use the panel in the right hand corner to toggle between wet, dry and base scenarios. The model results show that under wet and dry scenarios, both the stream flow rate and the flux between surface and ground water are more extreme, while the base scenario is associated with more moderate outcomes. Both the wet and dry scenarios are more likely to be occurring under higher emissions scenarios compared to present, while base conditions are more likely under present day conditions. Among other issues highlighted on the systems diagram in the main interface, these extreme wet and dry conditions provide increased pathways for pathogens to move through our waterways and increase the risk of infection.
             
                         <div class="custom-tooltip">
     <b>Hover here for further information on Bayesian networks.</b>
@@ -142,6 +150,41 @@ Ministry for the Environment. </li>
         
     </div>
 
+    
+        <div id="glossary" class="tab-content">
+<br><br><br>
+            <ul>
+    <li><b>Abstraction:</b> The process of taking away or removing characteristics from something in order to reduce it to a set of essential characteristics. https://www.techtarget.com/whatis/definition/abstraction </li>  
+    <li><b>Capital stocks:</b> The total value of the buildings, machines, etc. within a particular economy, or owned by a particular company, which are used to produce goods and services. https://dictionary.cambridge.org/dictionary/english/capital-stock#google_vignette </li>
+    <li><b>Capital:</b> The assets—physical tools, plants, and equipment—that allow for increased work productivity. https://www.investopedia.com/ask/answers/051115/what-capital-relation-factors-production.asp </li>
+    <li><b>Causal Loop Diagrams:</b> A snapshot of all relationships that matter. It is a visual representation of key variables (i.e., factors, issues, processes) and how they are interconnected. Variables are represented as texts and causal relationships between them represented as arrows. Arrows indicate the direction of causality, the nature of the relationships (i.e., proportional or inverse), and whether there is any delay in an expected effects’ occurrence. https://www.marketlinks.org/resources/what-causal-loop-diagram-and-what-it-good </li>
+    <li><b>Consumption:</b> The use of goods and services by a household Consumption - Definion, Economics, Importance, Levels (corporatefinanceinstitute.com)</li>
+    <li><b>Contamination:</b> The addition of undesired substances by human activities. Chemicals, brines, microbes, viral infections, medications, fertilizers and petroleum can all contribute to water contamination. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8512142/ </li>
+    <li><b>Coping capacity:</b> The ability of people, organizations and systems, using available skills and resources, to manage adverse conditions, risk or disasters. The capacity to cope requires continuing awareness, resources and good management, both in normal times as well as during disasters or adverse conditions. Coping capacities contribute to the reduction of disaster risks. https://www.undrr.org/terminology/ </li>
+    <li><b>Cyanobacteria:</b> Also called blue-green algae, microscopic organisms found naturally in all types of water. These single-celled organisms live in fresh, brackish (combined salt and fresh water), and marine water. These organisms use sunlight to make their own food. In warm, nutrient-rich (high in phosphorus and nitrogen) environments, cyanobacteria can multiply quickly, creating blooms that spread across the water’s surface. https://www.cdc.gov/habs/pdf/cyanobacteria_faq.pdf </li>
+    <li><b>Ecological health:</b> The state or condition of an ecosystem in which its dynamic attributes are expressed within the normal ranges of activity relative to its ecological state of development (van Andel and Aronson, 2006). https://www.sciencedirect.com/topics/earth-and-planetary-sciences/ecosystem-health  </li>
+    <li><b>Enteric diseases:</b> Diseases are caused by micro-organisms such as viruses, bacteria and parasites that cause intestinal illness. These diseases most frequently result from consuming contaminated food or water and some can spread from person to person. https://www.publichealthontario.ca/en/diseases-and-conditions/infectious-diseases/enteric-foodborne-diseases </li>
+    <li><b>Eutrophication:</b> The process where too many nutrients, typically nitrogen and phosphorus, are added to bodies of water and can act like fertilizer, causing excessive growth of algae. https://oceanservice.noaa.gov/facts/nutpollution.html </li>
+    <li><b>Factor intensities of production:</b> The relative amounts of capital and labor used in producing a good.</li>
+    <li><b>Groundwater flooding:</b> Occurs when the water table in permeable rocks rises to enter basements/cellars or comes up above the ground surface. Groundwater flooding is not necessarily linked directly to a specific rainfall event and is generally of longer duration than other causes of flooding. https://www2.bgs.ac.uk/groundwater/flooding/groundwaterHomesFAQ.html </li>
+    <li><b>Groundwater recharge:</b> The process by which external water is added to the zone of saturation of an aquifer, either directly into a formation or indirectly by way of another formation. https://www.eea.europa.eu/help/glossary/eea-glossary/groundwater-recharge </li>
+    <li><b>Groundwater:</b> The water found underground in the cracks and spaces in soil, sand and rock. It is stored in and moves slowly through geologic formations of soil, sand and rocks called aquifers. What is Groundwater? – The Groundwater Foundation</li>
+    <li><b>https://online.universita.zanichelli.it/salvatore/files/2016/06/Salvatore_study-guide_ch05.pdf 
+Hydrological cycle:</b> The continuous circulation of water within the Earth's hydrosphere, and is driven by solar radiation. This includes the atmosphere, land, surface water and groundwater. As water moves through the cycle, it changes state between liquid, solid, and gas phases. https://www.eea.europa.eu/archived/archived-content-water-topic/wise-help-centre/glossary-definitions/hydrological-cycle </li>
+    <li><b>Hydrology:</b> The study of the distribution and movement of water both on and below the Earth’s surface, as well as the impact of human activity on water availability and conditions. Hydrology (nationalgeographic.org)</li>
+                <li><b>Inorganic contaminants:</b> Inorganic contaminants are natural or man-made elements or compounds that can contaminate water or be concentrated in the water cycle. Inorganics can include a combination of metals, salts, compounds, particles, and mineral complexes which do not contain carbon. https://www.knowyourh2o.com/indoor-5/inorganics </li>
+    <li><b>Nutrient cycling:</b> The movement and exchange of organic and inorganic matter back into the production of living matter via the food web pathways that decompose matter into mineral nutrients.  https://www.sciencedirect.com/topics/medicine-and-dentistry/nutrient-cycle </li>
+    <li><b>Pathogens:</b> An organism causing disease to its host, with the severity of the disease symptoms referred to as virulence. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5648414/ </li>
+    <li><b>Precipitation:</b> Any liquid or frozen water that forms in the atmosphere and falls to Earth. https://education.nationalgeographic.org/resource/precipitation/ </li>
+    <li><b>Reinforcing loops:</b> In a systems diagram, a loop in which an action produces a result which influences more of the same action thus resulting in growth or decline. The reinforcing loop is one of the two foundational structures of systems thinking, the other being the Balancing Loop. https://www.systems-thinking.org/theWay/sre/re.htm </li>
+    <li><b>Soil moisture:</b> The water stored in the soil and is affected by precipitation, temperature, soil characteristics, and more. https://www.earthsciweek.org/classroom-activities/soil-moisture </li>
+    <li><b>Surface water:</b> Any body of water found on the Earth’s surface, including both the saltwater in the ocean and the freshwater in rivers, streams, and lakes. Surface Water (nationalgeographic.org)</li>
+    <li><b>System dynamics:</b> Methods and tools to model and analyse dynamic systems. Model results can be used to communicate essential findings to help understand a system’s behaviour. https://systemdynamics.org/what-is-system-dynamics/ </li>
+    <li><b>Systems mapping:</b> The creation of visual depictions of a system, such as its relationships and feedback loops, actors and trends. Systems mapping is intended to provide a simplified conceptual understanding of a complex system. https://www.wri.org/technical-perspectives/ </li>
+    <li><b>Taonga:</b> Treasure, anything prized - applied to anything considered to be of value including socially or culturally valuable objects, resources, phenomenon, ideas and techniques. https://maoridictionary.co.nz/search?keywords=taonga </li>
+    <li><b>Toxins:</b> Substances created by plants and animals that are poisonous (toxic) to humans. https://medlineplus.gov/ency/article/002331.htm </li>
+
+<ul>
 
     
     
